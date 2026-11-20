@@ -29,11 +29,10 @@ Raw FASTQs
     │
     ├─ 6. Batch correction        imodulon_combat.R
     │      ComBat (SVA) across 7 GEO batches → global_ComBat_logCPM.csv
-    │      Tigecycline (single batch) → tigecycline_logCPM_no_ComBat.csv
     │      Final merged matrix   → all96_merged_logCPM_ComBat.csv
-    │      Per-antibiotic slices → <Drug>_for_GRN.csv  (input to ICA)
+    │      Per-antibiotic slices → <Drug>_for_GRN.csv  (input to comhub)
     │
-    ├─ 7. ICA decomposition       ComHub  ·  iModulonMiner  (external)
+    ├─ 7.  GRN construction (ComHub  ·  iModulonMiner  (external))
     │      → per-antibiotic GRN edge CSVs (source, target)
     │
     ├─ 8. High-confidence filter  high_threshold_across_networks.py
@@ -185,7 +184,7 @@ The per-antibiotic slices are the direct input to ComHub / iModulonMiner (step 7
 ### 7 · ICA decomposition — ComHub & iModulonMiner *(external)*
 
 Run ComHub and iModulonMiner on the per-antibiotic expression matrices from step 6 to produce GRN edge CSVs. See their documentation:
-- ComHub: https://github.com/SBRG/comhub
+- ComHub: https://gitlab.com/Gustafsson-lab/comhub
 - iModulonMiner: https://github.com/SBRG/iModulonMiner
 
 The GRN analysis scripts expect seven edge files with columns `source, target`, placed beside the scripts, in `data/`, or at the path set by `GRN_DATA_DIR`:
@@ -233,12 +232,12 @@ All scripts import `grn_common.py`. Run from the directory containing the script
 ```bash
 python step1_1_summary_table.py                # topology, FFLs, bi-fans, hub chains
 jupyter nbconvert --execute step1_2_centrality_analysis.ipynb
-python step2_tiers_seesaw.py                   # 3-tier stratification + seesaw
+python step2_tiers_seesaw.py                   # 3-tier stratification 
 python step3_hub_motifs.py                     # hub-driven FFLs and bi-fans
 python step4_motif_enrichment.py               # null-model enrichment (swap, default)
 python step5_coverage_leaves.py                # leaf-gene coverage
 python step6_regulatory_network_tiers.py       # pan-network tier figure
-python step7_pan_grn_analysis.py               # Fig. 2 pan-GRN XGMML
+python step7_pan_grn_analysis.py               # pan-GRN XGMML
 jupyter nbconvert --execute regulator_analysis.ipynb
 ```
 

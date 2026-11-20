@@ -1,0 +1,12 @@
+# GRN hub gene symbols - one per line
+beti
+rcsc
+fadr
+pgrr
+lrp
+yybr
+rhas
+dmlr
+paax
+rpoh
+arsr2

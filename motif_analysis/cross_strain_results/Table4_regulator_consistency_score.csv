@@ -1,0 +1,4 @@
+Antibiotic,Regulator,Strains_total,Strains_sig_FDR05,Consistency_pct,Consistently_sig_all,Best_FDR_overall,Avg_fold_enrichment_sig
+Amikacin,fadr,4,4,100%,True,7.9e-05,2.78
+Amikacin,rcsc,4,3,75%,False,0.000518,2.53
+Amikacin,beti,4,2,50%,False,2e-06,2.71
